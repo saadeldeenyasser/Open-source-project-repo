@@ -22,3 +22,16 @@ def encode(path,secret):
     else:
         exit("unsupported image type")
 
+def decode(path):
+    fhand=open(path,"rb")
+    data = fhand.read()
+    if data.endswith(end_bits) == 1 :
+        data=data[data.find(end_bits)+len(end_bits):]
+        data=data[:data.find(end_bits)]
+    elif data.endswith(end_bits2) == 1:
+        data=data[data.find(end_bits2)+len(end_bits2):]
+        data = data[:data.find(end_bits2)]
+    else:
+        exit("unsupported image type")
+    print("your secret message is:"+data.decode())
+
